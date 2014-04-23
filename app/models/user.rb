@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :entries, dependent: :destroy
   before_save {self.email = email.downcase}
   before_create :create_remember_token
   validates :name, presence: true, length: {maximum: 50}
@@ -17,6 +18,9 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def feed
+    Entry.where("user_id = ?", id)
+  end
   private
 
     def create_remember_token
