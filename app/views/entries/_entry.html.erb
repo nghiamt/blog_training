@@ -5,6 +5,8 @@
   Posted <%= time_ago_in_words(entry.created_at) %> ago.
 </span>
 <% if current_user?(entry.user) %>
+  <%= link_to "#{entry.comments.count} comments", entry %>
+  <br/>
   <%= link_to "delete", entry, method: :delete,
                                    data: { confirm: "You sure?" },
                                    title: entry.title %>

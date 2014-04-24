@@ -1,5 +1,5 @@
-<% if signed_in? %>
-  <div class="row">
+<div class="row">
+  <% if signed_in? %>
     <aside class="span4">
     <section>
       <%= render 'shared/user_info' %>
@@ -11,11 +11,10 @@
       <%= render 'shared/entry_form' %>
     </section>
     </aside>
-<% end %>
+  <% end %>
   <div class="span8">
     <h3>Entries</h3>
     <%= render 'shared/feed' %>
   </div>
 </div>
-
 
