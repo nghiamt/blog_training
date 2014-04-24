@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
-  resources :entries, only: [:create, :destroy]
+  resources :entries, only: [:create, :destroy, :show] do
+    resources :comments
+  end
   resources :relationships, only: [:create, :destroy]
   root 'static_pages#home'
   match '/signup', to: 'users#new', via: 'get'

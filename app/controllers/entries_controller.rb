@@ -1,6 +1,10 @@
 class EntriesController < ApplicationController
-  before_action :signed_in_user
+  before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user, only: :destroy
+
+  def show
+    @entry = Entry.find(params[:id])
+  end
 
   def create
    @entry = current_user.entries.build(entry_params)
